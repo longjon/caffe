@@ -38,8 +38,8 @@ def format_param(param):
 def printed_len(s):
     return len(re.sub(r'\033\[[\d;]+m', '', s))
 
-def print_table(table, max_width):
-    """Print a simple nicely-aligned table.
+def table_str(table, max_width):
+    """Return a string containing a simple nicely-aligned table.
 
     table must be a list of (equal-length) lists. Columns are space-separated,
     and as narrow as possible, but no wider than max_width. Text may overflow
@@ -51,6 +51,7 @@ def print_table(table, max_width):
                      for j in range(len(table[0]))]
     column_widths = [min(w, max_w) for w, max_w in zip(column_widths, max_widths)]
 
+    row_strs = []
     for row in table:
         row_str = ''
         right_col = 0
@@ -58,7 +59,8 @@ def print_table(table, max_width):
             right_col += width
             row_str += cell + ' '
             row_str += ' ' * max(right_col - printed_len(row_str), 0)
-        print row_str
+        row_strs.append(row_str)
+    return '\n'.join(row_strs)
 
 def summarize_net(net):
     disconnected_tops = set()
@@ -134,7 +136,7 @@ def main():
 
     net = read_net(args.filename)
     table = summarize_net(net)
-    print_table(table, max_width=args.max_width)
+    print table_str(table, max_width=args.max_width)
 
 if __name__ == '__main__':
     main()
