@@ -10,6 +10,7 @@
 #include "caffe/common.hpp"
 #include "caffe/layer_factory.hpp"
 #include "caffe/proto/caffe.pb.h"
+#include "caffe/util/math_functions.hpp"
 #include "caffe/util/coords.hpp"
 #include "caffe/util/device_alternate.hpp"
 
