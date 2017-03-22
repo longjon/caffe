@@ -1,6 +1,6 @@
 #include <vector>
 
-#include "caffe/vision_layers.hpp"
+#include "caffe/layers/crop_layer.hpp"
 
 namespace caffe {
 
